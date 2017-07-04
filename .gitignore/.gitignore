@@ -1,0 +1,568 @@
+
+
+
+课 程 设 计 报 告
+
+
+课程设计名称：移动平台应用开发 
+课程设计题目：计算器
+
+ 
+院（系）：计算机与信息工程学院 
+专    业：软件工程 
+班    级：网络编程
+学    号：20151104714
+姓    名：刘昊忻
+指导教师：朝力萌
+完成日期：2017/7/2
+
+
+
+
+
+
+ 概要设计
+1.1题目的内容与要求
+内容：编写出一个简单的计算器
+
+要求：	利用swift语言编写出一个简单的计算器
+		可以实现加减乘除，归零等
+详细设计
+2.1主模块
+运行程序界面：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+程序主要代码：
+1.记录第一个输入的数字
+if a3 == ""
+        {
+         
+            a1 = a1 + q!
+            
+            switch a1 {
+            case "00" :
+                a1 = "0"
+                 a.text=a1
+               a1=""
+             
+            case "0." :
+                a1 = "0."
+                 a.text=a1
+                
+            case "0.." :
+                a1 = "0."
+                 a.text=a1
+                
+            case ".." :
+                a1 = "0."
+                 a.text=a1
+                
+            case "." :
+                a1 = "0."
+                 a.text=a1
+                
+            default:
+                   a.text=a1
+                
+                
+            }
+
+2.记录第二个输入的数字
+else
+        {
+             a2 = a2 + q!
+            switch a2 {
+            case "00" :
+                a2 = "0"
+                a.text=a2
+            case "0." :
+                a2 = "0."
+                a.text=a2
+            case "0.." :
+                a2 = "0."
+                a.text=a2
+            case ".." :
+                a2 = "0."
+                a.text=a2
+            case "." :
+                a2 = "0."
+                a.text=a2
+           
+            default:
+                 a.text=a2
+            }
+
+3.记录运算符号并进行运算
+
+let q = sender.currentTitle
+        if q=="+"||q=="-"||q=="*"||q=="/"
+        {
+            a3 = q!
+            return
+        }
+        else if q == "="||q == "C"
+        {
+            var e:Double = 0
+            switch a3 {
+            case "+":
+     
+                     e = Double(a1)! + Double(a2)!
+                     a.text = "\(e)"
+                     a1=String(e)
+            case "-":
+                e = Double(a1)! - Double(a2)!
+                  a.text = "\(e)"
+                a1=String(e)
+                
+            case "*":
+                e = Double(a1)! * Double(a2)!
+                  a.text = "\(e)"
+                a1=String(e)
+                
+            case "/":
+                if a2 == "0"
+                {
+                     a.text = "\("错误")"
+                    
+                }
+                else
+                {
+                    e = Double(a1)! / Double(a2)!
+                      a.text = "\(e)"
+                    a1 = String(e)
+                }
+                
+            default:
+                e = 0
+                a1=""
+                  a.text = "\( Int( e))"
+                
+            }
+            a2=""
+            a3=""
+            return
+           调试分析
+
+对程序分别进行以下操作：
+
+进行加减乘除运算
+进行小数点运算及归零操作
+进行连加操作
+	
+运行操作及结果:
+	通过调试分析可以基本实现计算器功能
+二．课程设计小结
+  在实验中发现——分析——总结的问题有：
+实现了计算器的基本功能但是还有很多功能没有实现如不能实现：
+输出结果是后面总会多一个“.0”
+不能进行回退操作
+意外关闭后不能保存数据
+输入的错误  包括（ 0.0.0    ……..）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+课 程 设 计 报 告
+
+
+课程设计名称：移动平台应用开发 
+课程设计题目：乒乓球计分器
+
+ 
+院（系）：计算机与信息工程学院 
+专    业：软件工程 
+班    级：网络编程
+学    号：20151104714
+姓    名：刘昊忻
+指导教师：朝力萌
+完成日期：2017/7/2
+
+
+
+
+
+
+ 概要设计
+1.1题目的内容与要求
+内容：编写出一个简单的乒乓球记分系统
+
+要求：	利用swift语言编写出一个简单的计分器
+		可以实现插入运动员图片，记录运动员得分
+详细设计
+2.1主模块
+运行程序界面：
+程序主要代码：
+1.所有的变量定义，显示框定义，图片框定义 
+     var a:Int = 0
+    var b:Int = 0
+    var c:Int = 1
+    var d:Int = 0
+    var e:Int = 0
+    var array1 : [Int] = [0,0,0,0,0,0,0]
+    var array2 : [Int] = [0,0,0,0,0,0,0]
+  
+    var flaga:Int = 0
+    var flagb:Int = 0
+    var dlg:Int = 0
+
+    @IBOutlet weak var temp3: UITextField!
+    @IBOutlet weak var temp: UITextField!
+    @IBOutlet weak var temp1: UITextField!
+    @IBOutlet weak var temp2: UITextField!
+    @IBOutlet weak vap4: UITextField!
+
+    @IBOutlet var imageb: UIImageView!
+    @IBOutlet var imagea: UIImageView!
+
+2.运动员的头像选择
+
+func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any]) {
+       
+            //查看info对象
+            print(info)
+            //显示的图片
+            let image:UIImage!
+            //获取选择的原图
+            image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            if(flaga == 1){imagea.image = image }
+            else if(flagb == 1){imageb.image = image}
+            //图片控制器退出
+            picker.dismiss(animated: true, completion: {
+                () -> Void in
+ 
+            
+            
+        })
+    }
+
+    @IBAction func UploadphotoA(_ sender: Any) {
+        if dlg == 0{
+            flaga = 1
+            flagb = 0
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                //初始化图片控制器
+                let picker = UIImagePickerController()
+                //设置代理
+               picker.delegate = self
+                //指定图片控制器类型
+                picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+                //弹出控制器，显示界面
+                self.present(picker, animated: true, completion: {
+                    () -> Void in
+                })
+            }else{
+                print("读取相册错误")
+            }
+        }
+    }
+       @IBAction func UploadphotoB(_ sender: Any) {
+        if dlg==0{
+            flagb=1
+            flaga=0
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                //初始化图片控制器
+                let picker = UIImagePickerController()
+                //设置代理
+              picker.delegate = self
+                //指定图片控制器类型
+                picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+                //弹出控制器，显示界面
+                self.present(picker, animated: true, completion: {
+                    () -> Void in
+                })
+            }else{
+                print("读取相册错误")
+            }
+        }
+    }
+3.对运动员进行加分操作
+  @IBAction func adda(_ sender: Any) {
+        a=a+1
+        if( b<10 && a==11 || b>=10 && a-b==2 )
+        {
+            
+            temp.text="\("第" + String(c) + "局")"
+            temp3.text="\("马龙胜")"
+            array1[c-1] = a
+            array2[c-1] = b
+            c=c+1
+            a=0
+            b=0
+            d=d+1
+            temp1.text="\(d)"
+            if (c == 8 || d-e==3)
+            {
+                temp4.text="\("比赛结束")"
+                temp.text="\( "马龙  " )"
+                 temp3.text="\( "赢  " )"
+                
+                let alertVC = UIAlertController(title: "比赛结束 马龙 赢", message: "马龙   :   张继科"  + "\n" + "总比分" + String(d) + ":" + String(e) + "\n第一局"  + String(array1[0]) +  ":" + String(array2[0])  + "\n第二局" + String(array1[1]) +  ":" + String(array2[1])  + "\n 第三局" +  String(array1[2]) +  ":" + String(array2[2]) + "\n 第四局" +  String(array1[3]) +  ":" + String(array2[3]) + "\n 第五局" +  String(array1[4]) +  ":" + String(array2[4]) + "\n 第六局" +  String(array1[5]) +  ":" + String(array2[5]) + "\n 第七局" +  String(array1[6]) +  ":" + String(array2[6]), preferredStyle: UIAlertControllerStyle.alert)
+                let acSure = UIAlertAction(title: "确定", style: UIAlertActionStyle.destructive)
+                { (UIAlertAction) -> Void in
+                    print("click Sure")
+                }
+                let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel)
+                { (UIAlertAction) -> Void in
+                    print("click Cancel")
+                }
+                alertVC.addAction(acSure)
+                alertVC.addAction(acCancel)
+                self.present(alertVC, animated: true, completion: nil)
+
+                
+                c=1;
+                d=0;
+                e=0;
+                temp2.text = "\(e)"
+                temp1.text="\(d)"
+  
+            }
+        }else
+        {
+            temp.text="\( String(a) )"
+              temp3.text="\( String(b) )"
+            temp4.text="\("第" + String(c) + "局")"
+        }
+        
+    }
+
+    @IBAction func addb(_ sender: Any) {
+        b=b+1
+        if( a<10 && b==11 || a>=10 && b-a==2)
+        {
+            temp.text="\("第" + String(c) + "局")"
+            temp3.text="\("张继科胜")"
+            array1[c-1] = a
+            array2[c-1] = b
+            c=c+1
+            a=0
+            b=0
+            e=e+1
+            temp2.text = "\(e)"
+            if (c == 8 || e-d==3)
+            {
+                temp4.text="\("比赛结束")"
+                temp.text="\( "张继科 " )"
+                temp3.text="\( "赢  " )"
+                let alertVC = UIAlertController(title: "比赛结束 马龙 赢", message: "马龙   :   张继科"  + "\n" + "总比分" + String(d) + ":" + String(e) + "\n第一局"  + String(array1[0]) +  ":" + String(array2[0])  + "\n第二局" + String(array1[1]) +  ":" + String(array2[1])  + "\n 第三局" +  String(array1[2]) +  ":" + String(array2[2]) + "\n 第四局" +  String(array1[3]) +  ":" + String(array2[3]) + "\n 第五局" +  String(array1[4]) +  ":" + String(array2[4]) + "\n 第六局" +  String(array1[5]) +  ":" + String(array2[5]) + "\n 第七局" +  String(array1[6]) +  ":" + String(array2[6]), preferredStyle: UIAlertControllerStyle.alert)
+                let acSure = UIAlertAction(title: "确定", style: UIAlertActionStyle.destructive)
+                { (UIAlertAction) -> Void in
+                    print("click Sure")
+                }
+                let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel)
+                { (UIAlertAction) -> Void in
+                    print("click Cancel")
+                }
+                alertVC.addAction(acSure)
+                alertVC.addAction(acCancel)
+                self.present(alertVC, animated: true, completion: nil)
+                
+                c=1;
+                d=0;
+                e=0;
+                temp2.text = "\(e)"
+                temp1.text="\(d)"
+            }
+        }else
+        {
+            temp.text="\( String(a) )"
+              temp3.text="\(String(b) )"
+            temp4.text="\("第" + String(c) + "局")"
+        }
+    }
+
+3.对运动员进行减分操作
+
+ @IBAction func acca(_ sender: Any) {
+        if(a>0)
+        {
+            a=a-1
+            if( a<10 && b==11 || a>=10 && b-a==2)
+            {
+                temp.text="\("第" + String(c) + "局")"
+                temp3.text="\("张继科胜")"
+                array1[c-1] = a
+                array2[c-1] = b
+                c=c+1
+                a=0
+                b=0
+                e=e+1
+                temp2.text = "\(e)"
+                if (c == 7 || e-d==3)
+                {
+                    temp4.text="\("比赛结束")"
+                    temp.text="\( "张继科  " )"
+                    temp3.text="\( "赢  " )"
+                   let alertVC = UIAlertController(title: "比赛结束 马龙 赢", message: "马龙   :   张继科"  + "\n" + "总比分" + String(d) + ":" + String(e) + "\n第一局"  + String(array1[0]) +  ":" + String(array2[0])  + "\n第二局" + String(array1[1]) +  ":" + String(array2[1])  + "\n 第三局" +  String(array1[2]) +  ":" + String(array2[2]) + "\n 第四局" +  String(array1[3]) +  ":" + String(array2[3]) + "\n 第五局" +  String(array1[4]) +  ":" + String(array2[4]) + "\n 第六局" +  String(array1[5]) +  ":" + String(array2[5]) + "\n 第七局" +  String(array1[6]) +  ":" + String(array2[6]), preferredStyle: UIAlertControllerStyle.alert)
+                    let acSure = UIAlertAction(title: "确定", style: UIAlertActionStyle.destructive)
+                    { (UIAlertAction) -> Void in
+                        print("click Sure")
+                    }
+                    let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel)
+                    { (UIAlertAction) -> Void in
+                        print("click Cancel")
+                    }
+                    alertVC.addAction(acSure)
+                    alertVC.addAction(acCancel)
+                    self.present(alertVC, animated: true, completion: nil)
+
+                    c=1;
+                    d=0;
+                    e=0;
+                    temp2.text = "\(e)"
+                    temp1.text="\(d)"
+                }
+            }else
+            {
+                temp.text="\( String(a) )"
+                 temp3.text="\(  String(b) )"
+            }
+
+        }
+        else if(a==8)
+        {
+            if(( c>=1 && d>=1))
+            {
+                a=array1[c-2]-1
+                b=array2[c-2]
+                c=c-1
+                d=d-1
+                temp4.text="\("第" + String(c) + "局")"
+                temp1.text="\(d)"
+                 temp.text="\( String(a) )"
+                 temp3.text="\(  String(b) )"
+            }
+            
+            
+        }
+         
+     
+
+    }
+   
+    @IBAction func accb(_ sender: Any) {
+        if(b>0)
+        {
+            b=b-1
+            temp.text="\( String(a) )"
+              temp3.text="\(  String(b) )"
+            if( b<10 && a==11 || b>=10 && a-b==2 )
+            {
+                temp.text="\("第" + String(c) + "局")"
+                 temp3.text="\("马龙 胜")"
+                array1[c-1] = a
+                array2[c-1] = b
+                c=c+1
+                a=0
+                b=0
+                d=d+1
+                temp1.text="\(d)"
+                if (c == 8 || d-e==3)
+                {
+                    temp4.text="\("比赛结束" + String(d) + ":" + String(e))"
+                    temp.text="\( "马龙 赢  " )"
+                   let alertVC = UIAlertController(title: "比赛结束 马龙 赢", message: "马龙   :   张继科"  + "\n" + "总比分" + String(d) + ":" + String(e) + "\n第一局"  + String(array1[0]) +  ":" + String(array2[0])  + "\n第二局" + String(array1[1]) +  ":" + String(array2[1])  + "\n 第三局" +  String(array1[2]) +  ":" + String(array2[2]) + "\n 第四局" +  String(array1[3]) +  ":" + String(array2[3]) + "\n 第五局" +  String(array1[4]) +  ":" + String(array2[4]) + "\n 第六局" +  String(array1[5]) +  ":" + String(array2[5]) + "\n 第七局" +  String(array1[6]) +  ":" + String(array2[6]), preferredStyle: UIAlertControllerStyle.alert)
+                    let acSure = UIAlertAction(title: "确定", style: UIAlertActionStyle.destructive)
+                    { (UIAlertAction) -> Void in
+                        print("click Sure")
+                    }
+                    let acCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel)
+                    { (UIAlertAction) -> Void in
+                        print("click Cancel")
+                    }
+                    alertVC.addAction(acSure)
+                    alertVC.addAction(acCancel)
+                    self.present(alertVC, animated: true, completion: nil)
+
+                    c=1;
+                    d=0;
+                    e=0;
+                    temp2.text = "\(e)"
+                    temp1.text="\(d)"
+                }
+                else
+                {
+                      temp.text="\( String(a)  )"
+                    temp3.text="\( String(b) )"
+                }
+            }
+          
+        }
+        else if(b==0)
+        {
+            if(( c>=1 && e>=1))
+            {
+                a=array1[c-2]
+                b=array2[c-2]-1
+                c=c-1
+                e=e-1
+                temp4.text="\("第" + String(c) + "局")"
+                temp2.text="\(e)"
+                temp.text="\( String(a)  )"
+                temp3.text="\( String(b) )"
+            }
+            
+        }
+    }
+
+调试分析
+
+对程序分别进行以下操作：
+
+单击主界面按钮可以实现跳转
+计分可以实现基本加分功能，减分功能
+可以插入图片
+	 使用说明与执行结果 
+运行操作及结果:
+	通过调试分析可以基本实现计时器功能
+二．课程设计小结
+  在实验中发现——分析——总结的问题有：
+实现了计分器的基本功能但是还有很多功能没有实现如不能实现：
+无法跨界面运用
+弹出对话框后确定和取消无法执行
+意外关闭后不能保存数据
+
+
+  
+
+
+
